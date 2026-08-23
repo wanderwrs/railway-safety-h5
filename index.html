@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="description" content="铁道小卫士 - 中小学生铁路沿线安全互动课堂">
+  <title>铁道小卫士 - 铁路沿线安全互动课堂</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div id="app">
+
+  <!-- 顶部进度条 -->
+  <div class="progress-bar" id="progressBar">
+    <div class="progress-track">
+      <div class="progress-fill" id="progressFill" style="width:0%"></div>
+    </div>
+    <div class="progress-text" id="progressText">探索进度 0/6</div>
+  </div>
+
+  <!-- ===== 开篇页 ===== -->
+  <section class="screen active" id="screen-intro">
+    <button class="about-btn" onclick="toggleAbout()" aria-label="关于本项目">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+        <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2" fill="none"/>
+        <path d="M9.5 9a2.5 2.5 0 015 0c0 1.5-2.5 2-2.5 3.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/>
+        <circle cx="12" cy="17" r="1" fill="currentColor"/>
+      </svg>
+    </button>
+    <img class="intro-train" src="images/guides.jpg" alt="铁道安全小向导" />
+    <h1 class="intro-title">铁道小卫士</h1>
+    <p class="intro-subtitle">铁路沿线安全分级互动课堂</p>
+    <p class="intro-desc">嗨，同学！我是铁道安全小向导安安。今天带你去铁路沿线看看，哪些事情千万不能做！选择难度等级，开始闯关吧。</p>
+    <div class="grade-cards" id="gradeCards">
+      <div class="grade-card-wrapper" data-grade="elementary">
+        <button class="grade-card" onclick="selectGrade('elementary')">
+          <div class="grade-card-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M12 3L2 8l10 5 10-5-10-5z" stroke="#52C41A" stroke-width="2" fill="#52C41A" opacity="0.2"/><path d="M12 3L2 8l10 5 10-5-10-5z" stroke="#52C41A" stroke-width="2" fill="none"/><path d="M6 10v5c0 1 2.5 3 6 3s6-2 6-3v-5" stroke="#52C41A" stroke-width="2" fill="none"/></svg>
+          </div>
+          <div class="grade-card-content">
+            <h3>初级 ★☆☆</h3>
+            <p>认识危险行为，建立安全意识</p>
+          </div>
+        </button>
+        <div class="grade-card-status" id="status-elementary"></div>
+      </div>
+      <div class="grade-card-wrapper" data-grade="middle">
+        <button class="grade-card locked" onclick="selectGrade('middle')">
+          <div class="grade-card-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M9 3v6L4 19a2 2 0 002 3h12a2 2 0 002-3l-5-10V3" stroke="#1A5F9E" stroke-width="2" fill="#1A5F9E" opacity="0.2"/><path d="M9 3v6L4 19a2 2 0 002 3h12a2 2 0 002-3l-5-10V3" stroke="#1A5F9E" stroke-width="2" fill="none"/><line x1="9" y1="3" x2="15" y2="3" stroke="#1A5F9E" stroke-width="2"/></svg>
+          </div>
+          <div class="grade-card-content">
+            <h3>中级 ★★☆</h3>
+            <p>掌握安全原理，了解法规常识</p>
+          </div>
+          <div class="lock-overlay"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><rect x="5" y="11" width="14" height="10" rx="2" stroke="#999" stroke-width="2" fill="#fff"/><path d="M8 11V7a4 4 0 018 0v4" stroke="#999" stroke-width="2" fill="none"/></svg></div>
+        </button>
+        <div class="grade-card-status" id="status-middle"></div>
+      </div>
+      <div class="grade-card-wrapper" data-grade="high">
+        <button class="grade-card locked" onclick="selectGrade('high')">
+          <div class="grade-card-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4.5L6 21l1.5-7.5L2 9h7l3-7z" stroke="#E74C3C" stroke-width="2" fill="#E74C3C" opacity="0.2"/><path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4.5L6 21l1.5-7.5L2 9h7l3-7z" stroke="#E74C3C" stroke-width="2" fill="none"/></svg>
+          </div>
+          <div class="grade-card-content">
+            <h3>高级 ★★★</h3>
+            <p>熟知法律后果，树立责任意识</p>
+          </div>
+          <div class="lock-overlay"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><rect x="5" y="11" width="14" height="10" rx="2" stroke="#999" stroke-width="2" fill="#fff"/><path d="M8 11V7a4 4 0 018 0v4" stroke="#999" stroke-width="2" fill="none"/></svg></div>
+        </button>
+        <div class="grade-card-status" id="status-high"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 场景闯关页 ===== -->
+  <section class="screen" id="screen-scenes">
+    <h2 class="section-title" id="scenesTitle">铁路沿线安全六关</h2>
+    <p class="section-subtitle" id="scenesSubtitle">请在每个场景中选出正确做法</p>
+    <div id="scenarioContainer"></div>
+    <div class="scene-nav" id="sceneNav">
+      <span class="nav-text" id="navPrev"></span>
+      <button class="btn btn-green" id="btnNextScene" onclick="nextScene()" style="display:none">下一关</button>
+    </div>
+    <div class="text-center mt-32 mb-24" id="scenesDone" style="display:none">
+      <button class="btn btn-primary btn-lg" onclick="goToScreen('screen-pledge')">签署安全承诺</button>
+    </div>
+  </section>
+
+  <!-- ===== 安全承诺页 ===== -->
+  <section class="screen" id="screen-pledge">
+    <div class="pledge-card">
+      <h2 class="pledge-title" id="pledgeTitle">铁路安全承诺</h2>
+      <p class="pledge-intro" id="pledgeIntro">亲爱的同学，在学习了铁路沿线安全知识后，请认真阅读并签署以下承诺：</p>
+      <div class="pledge-content" id="pledgeContent">
+      </div>
+      <div class="pledge-check">
+        <label class="pledge-checkbox-label">
+          <input type="checkbox" id="pledgeAgree" onchange="togglePledgeBtn()"> 我已认真阅读并承诺遵守以上内容
+        </label>
+      </div>
+      <div class="pledge-actions">
+        <button class="btn btn-secondary pledge-back-btn" id="pledgeBackBtn" onclick="goBackFromPledge()">返回</button>
+        <button class="btn btn-primary btn-lg" id="pledgeNextBtn" onclick="proceedToQuiz()" disabled>签署承诺，进入答题</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 答题挑战页 ===== -->
+  <section class="screen" id="screen-quiz">
+    <div id="quizArea"></div>
+    <div class="quiz-result" id="quizResult" style="display:none">
+      <div class="quiz-result-score" id="quizFinalScore">0</div>
+      <div class="quiz-result-label" id="quizResultLabel">答题完成</div>
+      <div class="quiz-result-msg" id="quizResultMsg"></div>
+      <div class="quiz-badge" id="quizBadge" style="display:none">铁道安全小达人</div>
+      <button class="btn btn-primary btn-lg" id="quizNextBtn" onclick="onQuizNext()">查看真实案例</button>
+    </div>
+  </section>
+
+  <!-- ===== 案例警示页 ===== -->
+  <section class="screen" id="screen-cases">
+    <h2 class="section-title">真实发生的事</h2>
+    <p class="section-subtitle">这些不是小事，每一起都是血的教训</p>
+    <div id="caseContainer"></div>
+    <div class="text-center mt-32 mb-24">
+      <button class="btn btn-blue btn-lg" onclick="goToScreen('screen-certificate')">领取安全证书</button>
+    </div>
+  </section>
+
+  <!-- ===== 证书页 ===== -->
+  <section class="screen" id="screen-certificate">
+    <h2 class="section-title" style="color:#fff">我是铁道安全小卫士</h2>
+    <p class="section-subtitle" style="color:rgba(255,255,255,0.7)">完成全部挑战，领取你的安全证书</p>
+
+    <div class="pledge-wall">
+      <div class="pledge-count" id="pledgeCount">0</div>
+      <div class="pledge-label">名同学已签署铁路安全承诺</div>
+    </div>
+
+    <!-- 证书卡片（合格及以上显示） -->
+    <div class="cert-container" id="certCard">
+      <div class="cert-decoration"></div>
+      <div class="cert-title" id="certTitle">答题能手合格证书</div>
+      <div class="cert-subtitle">铁路沿线安全互动课堂</div>
+
+      <div class="cert-name" id="certName">--</div>
+
+      <div class="cert-info">
+        <div class="cert-info-item">
+          <div class="cert-info-label">难度</div>
+          <div class="cert-info-value" id="certGrade">--</div>
+        </div>
+        <div class="cert-info-item">
+          <div class="cert-info-label">答题</div>
+          <div class="cert-info-value" id="certScenes">--</div>
+        </div>
+        <div class="cert-info-item">
+          <div class="cert-info-label">等级</div>
+          <div class="cert-info-value" id="certLevel" style="color:#52C41A;font-weight:700">合格</div>
+        </div>
+      </div>
+
+      <div class="cert-score-big" id="certTotalScore">0</div>
+      <div class="cert-info-label">总得分（满分100）</div>
+
+      <div class="cert-pledge" id="certPledge"></div>
+
+      <div class="cert-canvas-wrap">
+        <canvas id="certCanvas" width="360" height="120"></canvas>
+      </div>
+
+      <div class="cert-id" id="certId">证书编号：TDXWS-000000</div>
+      <div class="cert-levels-summary" id="certLevelsSummary"></div>
+      <div class="cert-next-action" id="certNextAction"></div>
+    </div>
+
+    <!-- 不合格提示卡片（分数<60时显示） -->
+    <div class="fail-card" id="failCard" style="display:none;">
+      <div class="fail-icon">📚</div>
+      <h3 class="fail-title">再接再厉</h3>
+      <p class="fail-desc">你的得分是 <span id="failScore" style="color:#FF4D4F;font-weight:700;font-size:24px;">0</span> 分</p>
+      <p class="fail-desc">难度：<span id="failGrade">--</span></p>
+      <p class="fail-desc" id="failDetail">--</p>
+      <p class="fail-tip">很遗憾，60分以上才能获得证书哦。<br>回去复习一下安全知识，再来挑战吧！</p>
+      <div class="fail-actions">
+        <button class="btn btn-primary" onclick="restartQuiz()">重新挑战</button>
+        <button class="btn btn-outline" onclick="goHome()">返回首页</button>
+      </div>
+    </div>
+
+    <div class="share-buttons">
+      <button class="btn btn-green share-btn" onclick="shareResult(event)">分享成绩</button>
+      <button class="btn btn-blue share-btn" onclick="copyLink(event)">复制链接</button>
+      <button class="btn btn-outline share-btn" onclick="goHome()">返回首页</button>
+    </div>
+
+    <div class="submit-guide">
+      <strong>铁道小卫士 · 铁路沿线安全知识闯关</strong><br>
+      <span id="footerVersion">版本 v1.2.0</span>
+    </div>
+  </section>
+
+  <!-- 昵称输入弹窗 -->
+  <div class="modal-overlay" id="nicknameOverlay" style="display:none;">
+    <div class="modal-box">
+      <h3 class="modal-title">输入你的昵称</h3>
+      <p class="modal-desc">用于生成你的专属证书</p>
+      <input type="text" id="nicknameInput" class="modal-input" maxlength="20" placeholder="请输入昵称（最多20字）" onkeydown="if(event.key==='Enter')confirmNickname()">
+      <div class="modal-actions">
+        <button class="btn btn-primary" onclick="confirmNickname()">确认</button>
+        <button class="btn btn-secondary" onclick="cancelNickname()">跳过</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== 关于弹窗 ===== -->
+<div class="about-modal" id="aboutModal" style="display:none;">
+  <div class="about-modal-overlay" onclick="toggleAbout()"></div>
+  <div class="about-modal-content">
+    <button class="about-close-btn" onclick="toggleAbout()" aria-label="关闭">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+        <line x1="6" y1="6" x2="18" y2="18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        <line x1="18" y1="6" x2="6" y2="18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      </svg>
+    </button>
+    <div class="about-header">
+      <div class="about-icon">
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="none">
+          <path d="M12 2L2 7l10 5 10-5-10-5z" stroke="#1A5F9E" stroke-width="2" fill="#1A5F9E" opacity="0.2"/>
+          <path d="M12 2L2 7l10 5 10-5-10-5z" stroke="#1A5F9E" stroke-width="2" fill="none"/>
+          <path d="M2 17l10 5 10-5" stroke="#1A5F9E" stroke-width="2" fill="none"/>
+          <path d="M2 12l10 5 10-5" stroke="#1A5F9E" stroke-width="2" fill="none"/>
+        </svg>
+      </div>
+      <h3>关于本项目</h3>
+      <p class="about-subtitle">铁道小卫士 · 铁路沿线安全知识闯关</p>
+    </div>
+
+    <div class="about-body">
+      <div class="about-section">
+        <h4>🎯 项目简介</h4>
+        <p>本作品为铁路科普互动类H5，面向中小学生开展铁路沿线安全教育。通过分级闯关、场景互动、知识答题等形式，普及铁路安全知识和相关法律法规，引导青少年树立安全意识和法治观念。</p>
+      </div>
+
+      <div class="about-section">
+        <h4>🤖 AI 辅助开发</h4>
+        <p>本项目由 <strong>TRAE Work</strong> AI 智能体全程辅助开发，大幅提升了开发效率。</p>
+        <div class="about-tags">
+          <span class="about-tag">代码生成</span>
+          <span class="about-tag">图片生成</span>
+          <span class="about-tag">Bug修复</span>
+          <span class="about-tag">内容创作</span>
+          <span class="about-tag">代码审查</span>
+          <span class="about-tag">测试验证</span>
+        </div>
+      </div>
+
+      <div class="about-section">
+        <h4>🛠️ 使用工具</h4>
+        <ul class="about-list">
+          <li><strong>TRAE Work</strong> — AI 智能体开发平台</li>
+          <li><strong>Seedream 文生图</strong> — 场景插图AI生成</li>
+          <li><strong>HTML5 / CSS3 / JavaScript</strong> — 前端技术栈</li>
+          <li><strong>localStorage</strong> — 本地数据持久化</li>
+          <li><strong>Netlify</strong> — 静态部署支持</li>
+        </ul>
+      </div>
+
+      <div class="about-section">
+        <h4>©️ 版权声明</h4>
+        <ul class="about-list">
+          <li>本作品<strong>文字内容、题目设计、交互架构</strong>均为创作者使用 TRAE Work 智能体原创</li>
+          <li>场景插图由 <strong>Seedream AI</strong> 辅助生成，创作者拥有完整使用权</li>
+          <li>铁路安全知识内容参考公开法律法规及科普资料整理</li>
+          <li>真实案例中人物均为化名，不涉及任何个人隐私</li>
+          <li>未经许可，不得用于商业用途</li>
+        </ul>
+      </div>
+
+      <div class="about-section">
+        <h4>📚 参考资料</h4>
+        <ul class="about-list">
+          <li>《中华人民共和国铁路法》</li>
+          <li>《铁路安全管理条例》</li>
+          <li>《中华人民共和国治安管理处罚法》</li>
+          <li>《中华人民共和国刑法》相关条款</li>
+          <li>中国铁道学会铁路科普作品征集大赛要求</li>
+          <li>国家铁路局安全科普宣传材料</li>
+        </ul>
+      </div>
+
+      <div class="about-section">
+        <h4>📊 项目数据</h4>
+        <div class="about-stats">
+          <div class="about-stat">
+            <div class="about-stat-num">3</div>
+            <div class="about-stat-label">难度等级</div>
+          </div>
+          <div class="about-stat">
+            <div class="about-stat-num">86</div>
+            <div class="about-stat-label">知识题目</div>
+          </div>
+          <div class="about-stat">
+            <div class="about-stat-num">36</div>
+            <div class="about-stat-label">场景插图</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="about-section about-version">
+        <p>版本号：<strong id="aboutVersion">v1.2.0</strong></p>
+        <p>© 2026 铁道小卫士 · 铁路科普作品</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="js/data.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
