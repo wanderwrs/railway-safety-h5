@@ -6,8 +6,10 @@ function imgSrc(name) {
   return IMG_BASE + name;
 }
 function imgFallback(img) {
+  if (img.dataset.retry) { img.style.display = 'none'; return; }
+  img.dataset.retry = '1';
   img.onerror = null;
-  img.src = 'images/' + img.dataset.name;
+  img.src = imgSrc(img.dataset.name) + '?t=' + Date.now();
 }
 
 /* ===== 状态管理 ===== */
