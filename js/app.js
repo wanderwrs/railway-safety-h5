@@ -1,5 +1,15 @@
 ﻿/* app.js - 铁道小卫士 H5 应用逻辑 */
 
+/* ===== 图片CDN加速 ===== */
+var IMG_BASE = 'https://cdn.jsdelivr.net/gh/wanderwrs/railway-safety-h5@main/images/';
+function imgSrc(name) {
+  return IMG_BASE + name;
+}
+function imgFallback(img) {
+  img.onerror = null;
+  img.src = 'images/' + img.dataset.name;
+}
+
 /* ===== 状态管理 ===== */
 function saveState() {
   try { localStorage.setItem('tdxws_state', JSON.stringify(STATE)); } catch(e) {}
@@ -192,7 +202,8 @@ function updateGradeCards() {
 /* ===== 场景插画（AI生成图片） ===== */
 function getSceneSVG(id) {
   var imgs = ['scene1_crossing','scene2_fence','scene3_net','scene4_tracks','scene5_electric','scene6_throw'];
-  return '<img src="images/' + (imgs[id-1] || imgs[0]) + '.jpg" alt="场景插图" />';
+  var name = (imgs[id-1] || imgs[0]) + '.jpg';
+  return '<img src="' + imgSrc(name) + '" data-name="' + name + '" alt="场景插图" onerror="imgFallback(this)" />';
 }
 function _getSceneSVG_old(id) {
   var svgs = {
@@ -380,7 +391,7 @@ function renderScenario(index) {
         '<span class="difficulty-badge diff-' + grade + '">' + g.name + ' ' + g.levelLabel + '</span>' +
       '</div>' +
       '<h3 class="scene-title">' + mq.title + '</h3>' +
-      '<div class="scene-image"><img src="images/' + mq.image + '" alt="' + mq.title + '" /></div>' +
+      '<div class="scene-image"><img src="' + imgSrc(mq.image) + '" data-name="' + mq.image + '" alt="' + mq.title + '" onerror="imgFallback(this)" /></div>' +
       '<div class="scene-quiz">' +
         '<div class="quiz-text">' + mq.question + '</div>' +
         '<div class="quiz-options">' + optsHtml + '</div>' +
@@ -753,7 +764,7 @@ function renderQuestion(idx) {
     : '';
 
   var imageHtml = isAdvanced && q.image
-    ? '<div class="quiz-image"><img src="images/' + q.image + '" alt="情境图" /></div>'
+    ? '<div class="quiz-image"><img src="' + imgSrc(q.image) + '" data-name="' + q.image + '" alt="情境图" onerror="imgFallback(this)" /></div>'
     : '';
 
   var multiHint = isMulti ? '<div class="multi-hint">多选题，请选择所有正确答案</div>' : '';
