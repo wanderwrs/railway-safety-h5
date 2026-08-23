@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="description" content="铁道小卫士 - 铁路沿线安全知识闯关">
+  <title>铁道小卫士 · 铁路沿线安全知识闯关</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: "PingFang SC", "Microsoft YaHei", sans-serif;
+      background: linear-gradient(180deg, #87CEEB 0%, #E0F4FF 50%, #98D8AA 100%);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 20px 16px 40px;
+    }
+    .promo-card {
+      width: 100%;
+      max-width: 480px;
+      background: #fff;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 8px 32px rgba(26, 95, 158, 0.15);
+    }
+    .promo-image {
+      width: 100%;
+      display: block;
+      cursor: pointer;
+    }
+    .promo-content {
+      padding: 24px 20px 28px;
+      text-align: center;
+    }
+    .promo-title {
+      font-size: 24px;
+      font-weight: 800;
+      color: #1A5F9E;
+      margin-bottom: 8px;
+    }
+    .promo-subtitle {
+      font-size: 15px;
+      color: #5A6C7D;
+      margin-bottom: 20px;
+      line-height: 1.6;
+    }
+    .promo-tags {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      margin-bottom: 24px;
+      flex-wrap: wrap;
+    }
+    .promo-tag {
+      background: #E8F4FD;
+      color: #1A5F9E;
+      padding: 6px 14px;
+      border-radius: 20px;
+      font-size: 13px;
+      font-weight: 500;
+    }
+    .start-btn {
+      display: block;
+      width: 100%;
+      padding: 16px 32px;
+      background: linear-gradient(135deg, #1A5F9E 0%, #4A90D9 100%);
+      color: #fff;
+      font-size: 18px;
+      font-weight: 700;
+      border: none;
+      border-radius: 50px;
+      cursor: pointer;
+      text-decoration: none;
+      box-shadow: 0 4px 16px rgba(26, 95, 158, 0.3);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .start-btn:active {
+      transform: scale(0.97);
+      box-shadow: 0 2px 8px rgba(26, 95, 158, 0.3);
+    }
+    .promo-features {
+      display: flex;
+      justify-content: space-around;
+      margin: 24px 0 20px;
+      padding: 16px 0;
+      border-top: 1px solid #E0E6ED;
+      border-bottom: 1px solid #E0E6ED;
+    }
+    .feature-item {
+      text-align: center;
+    }
+    .feature-num {
+      font-size: 22px;
+      font-weight: 800;
+      color: #FF8C42;
+    }
+    .feature-label {
+      font-size: 12px;
+      color: #5A6C7D;
+      margin-top: 4px;
+    }
+    .footer-tip {
+      margin-top: 20px;
+      text-align: center;
+      font-size: 12px;
+      color: #5A6C7D;
+      opacity: 0.7;
+    }
+  </style>
+</head>
+<body>
+  <div class="promo-card">
+    <img class="promo-image" src="https://cdn.jsdelivr.net/gh/wanderwrs/railway-safety-images@main/images/promo_banner.jpg" alt="铁道小卫士" onclick="startGame()" onerror="this.onerror=null;this.src='images/promo_banner.jpg'" />
+    <div class="promo-content">
+      <h1 class="promo-title">铁道小卫士</h1>
+      <p class="promo-subtitle">铁路沿线安全知识闯关<br/>初级 · 中级 · 高级 三级挑战</p>
+      <div class="promo-tags">
+        <span class="promo-tag">🎮 互动闯关</span>
+        <span class="promo-tag">📚 知识答题</span>
+        <span class="promo-tag">🏆 证书激励</span>
+      </div>
+      <div class="promo-features">
+        <div class="feature-item">
+          <div class="feature-num">3</div>
+          <div class="feature-label">难度等级</div>
+        </div>
+        <div class="feature-item">
+          <div class="feature-num">86+</div>
+          <div class="feature-label">知识题目</div>
+        </div>
+        <div class="feature-item">
+          <div class="feature-num">36+</div>
+          <div class="feature-label">场景插图</div>
+        </div>
+      </div>
+      <button class="start-btn" onclick="startGame()">立即开始挑战 →</button>
+    </div>
+  </div>
+  <p class="footer-tip">点击图片或按钮均可开始游戏</p>
+
+  <script>
+    function startGame() {
+      window.location.href = 'index.html';
+    }
+  </script>
+</body>
+</html>
