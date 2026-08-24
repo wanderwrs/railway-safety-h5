@@ -1,7 +1,7 @@
 ﻿/* app.js - 铁道小卫士 H5 应用逻辑 */
 
 /* ===== 图片CDN加速 ===== */
-var IMG_BASE = 'https://cdn.jsdelivr.net/gh/wanderwrs/railway-safety-images@main/images/';
+var IMG_BASE = 'images/';
 function imgSrc(name) {
   return IMG_BASE + name;
 }
