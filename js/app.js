@@ -1032,6 +1032,7 @@ function renderCases() {
           '</div>' +
         '</div>' +
         '<div class="case-lesson">' + c.lesson + '</div>' +
+        '<div class="case-source">' + c.source + '</div>' +
       '</div>';
     });
     html += '</div>';
@@ -1451,7 +1452,7 @@ function copyLink(evt) {
 /* ===== 初始化 ===== */
 (function init() {
   // 版本检查：清除旧版本状态
-  var VER = 'v1.2.3';
+  var VER = 'v1.2.4';
   var savedVer = localStorage.getItem('tdxws_ver');
   if (savedVer !== VER) {
     localStorage.removeItem('tdxws_state');
