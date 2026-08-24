@@ -998,31 +998,43 @@ function onQuizNext() {
 
 /* ===== 案例渲染 ===== */
 function renderCases() {
+  var levels = [
+    { key: 'elementary', label: '初级 · 小学阶段' },
+    { key: 'middle', label: '中级 · 初中阶段' },
+    { key: 'high', label: '高级 · 高中阶段' }
+  ];
   var html = '';
-  CASES.forEach(function(c, i) {
-    html += '<div class="case-card">' +
-      '<div class="case-title">' + c.title + '</div>' +
-      '<div class="case-info">' +
-        '<div class="case-info-row"><span class="case-info-label">时间</span>' + c.date + '</div>' +
-        '<div class="case-info-row"><span class="case-info-label">地点</span>' + c.location + '</div>' +
-        '<div class="case-info-row"><span class="case-info-label">当事人</span>' + c.person + '</div>' +
-      '</div>' +
-      '<div class="case-strip">' +
-        '<div class="case-panel">' +
-          '<div class="case-panel-num">1</div>' +
-          '<div class="case-panel-text">' + c.scene1 + '</div>' +
+  levels.forEach(function(lv) {
+    var groupCases = CASES.filter(function(c) { return c.level === lv.key; });
+    if (groupCases.length === 0) return;
+    html += '<div class="case-group">' +
+      '<div class="case-group-title">' + lv.label + '</div>';
+    groupCases.forEach(function(c) {
+      html += '<div class="case-card">' +
+        '<div class="case-title">' + c.title + '</div>' +
+        '<div class="case-info">' +
+          '<div class="case-info-row"><span class="case-info-label">时间</span>' + c.date + '</div>' +
+          '<div class="case-info-row"><span class="case-info-label">地点</span>' + c.location + '</div>' +
+          '<div class="case-info-row"><span class="case-info-label">当事人</span>' + c.person + '</div>' +
         '</div>' +
-        '<div class="case-panel">' +
-          '<div class="case-panel-num">2</div>' +
-          '<div class="case-panel-text">' + c.scene2 + '</div>' +
+        '<div class="case-strip">' +
+          '<div class="case-panel">' +
+            '<div class="case-panel-num">1</div>' +
+            '<div class="case-panel-text">' + c.scene1 + '</div>' +
+          '</div>' +
+          '<div class="case-panel">' +
+            '<div class="case-panel-num">2</div>' +
+            '<div class="case-panel-text">' + c.scene2 + '</div>' +
+          '</div>' +
+          '<div class="case-panel">' +
+            '<div class="case-panel-num">3</div>' +
+            '<div class="case-panel-text">' + c.scene3 + '</div>' +
+          '</div>' +
         '</div>' +
-        '<div class="case-panel">' +
-          '<div class="case-panel-num">3</div>' +
-          '<div class="case-panel-text">' + c.scene3 + '</div>' +
-        '</div>' +
-      '</div>' +
-      '<div class="case-lesson">' + c.lesson + '</div>' +
-    '</div>';
+        '<div class="case-lesson">' + c.lesson + '</div>' +
+      '</div>';
+    });
+    html += '</div>';
   });
   document.getElementById('caseContainer').innerHTML = html;
 }
@@ -1439,7 +1451,7 @@ function copyLink(evt) {
 /* ===== 初始化 ===== */
 (function init() {
   // 版本检查：清除旧版本状态
-  var VER = 'v1.2.0';
+  var VER = 'v1.2.3';
   var savedVer = localStorage.getItem('tdxws_ver');
   if (savedVer !== VER) {
     localStorage.removeItem('tdxws_state');
