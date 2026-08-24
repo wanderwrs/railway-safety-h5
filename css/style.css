@@ -1676,3 +1676,41 @@ button { font-family: inherit; cursor: pointer; border: none; outline: none; }
 .modal-actions .btn {
   flex: 1;
 }
+
+/* ===== 答题页知识宣讲 ===== */
+.quiz-knowledge-section {
+  margin-top: 24px;
+  padding: 20px 16px;
+  background: var(--card-bg);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+.quiz-knowledge-title {
+  font-size: 18px;
+  font-weight: 800;
+  color: var(--primary);
+  text-align: center;
+  margin-bottom: 16px;
+}
+.quiz-knowledge-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.quiz-knowledge-card {
+  background: var(--bg);
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  border: 1px solid var(--border);
+}
+.quiz-knowledge-card img {
+  width: 100%;
+  display: block;
+}
+.quiz-knowledge-card p {
+  padding: 10px 14px;
+  font-size: 13px;
+  color: var(--text-secondary);
+  line-height: 1.5;
+  margin: 0;
+}
