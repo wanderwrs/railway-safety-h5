@@ -732,6 +732,8 @@ function startQuiz() {
   STATE.advancedDone = false;
   STATE.finalQuizStarted = false;
   document.getElementById('quizResult').style.display = 'none';
+  var ks = document.getElementById('quizKnowledgeSection');
+  if (ks) ks.style.display = 'none';
   renderQuestion(0);
 }
 function renderQuestion(idx) {
@@ -941,6 +943,9 @@ function showQuizResult() {
 
   document.getElementById('quizFinalScore').textContent = score + '/' + total;
   document.getElementById('quizResult').style.display = 'block';
+
+  var knowledgeSection = document.getElementById('quizKnowledgeSection');
+  if (knowledgeSection) knowledgeSection.style.display = 'block';
 
   if (isAdvancedPhase) {
     // 高级第一阶段（20道情境题）完成
