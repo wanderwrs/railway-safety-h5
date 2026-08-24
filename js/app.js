@@ -998,45 +998,42 @@ function onQuizNext() {
 
 /* ===== 案例渲染 ===== */
 function renderCases() {
-  var levels = [
-    { key: 'elementary', label: '初级 · 小学阶段' },
-    { key: 'middle', label: '中级 · 初中阶段' },
-    { key: 'high', label: '高级 · 高中阶段' }
-  ];
-  var html = '';
-  levels.forEach(function(lv) {
-    var groupCases = CASES.filter(function(c) { return c.level === lv.key; });
-    if (groupCases.length === 0) return;
-    html += '<div class="case-group">' +
-      '<div class="case-group-title">' + lv.label + '</div>';
-    groupCases.forEach(function(c) {
-      html += '<div class="case-card">' +
-        '<div class="case-title">' + c.title + '</div>' +
-        '<div class="case-info">' +
-          '<div class="case-info-row"><span class="case-info-label">时间</span>' + c.date + '</div>' +
-          '<div class="case-info-row"><span class="case-info-label">地点</span>' + c.location + '</div>' +
-          '<div class="case-info-row"><span class="case-info-label">当事人</span>' + c.person + '</div>' +
+  var grade = STATE.grade || 'middle';
+  var levelMap = {
+    elementary: '初级 · 小学阶段',
+    middle: '中级 · 初中阶段',
+    high: '高级 · 高中阶段'
+  };
+  var groupCases = CASES.filter(function(c) { return c.level === grade; });
+  var html = '<div class="case-group">' +
+    '<div class="case-group-title">' + (levelMap[grade] || '案例') + '</div>';
+  groupCases.forEach(function(c) {
+    html += '<div class="case-card">' +
+      '<div class="case-title">' + c.title + '</div>' +
+      '<div class="case-info">' +
+        '<div class="case-info-row"><span class="case-info-label">时间</span>' + c.date + '</div>' +
+        '<div class="case-info-row"><span class="case-info-label">地点</span>' + c.location + '</div>' +
+        '<div class="case-info-row"><span class="case-info-label">当事人</span>' + c.person + '</div>' +
+      '</div>' +
+      '<div class="case-strip">' +
+        '<div class="case-panel">' +
+          '<div class="case-panel-num">1</div>' +
+          '<div class="case-panel-text">' + c.scene1 + '</div>' +
         '</div>' +
-        '<div class="case-strip">' +
-          '<div class="case-panel">' +
-            '<div class="case-panel-num">1</div>' +
-            '<div class="case-panel-text">' + c.scene1 + '</div>' +
-          '</div>' +
-          '<div class="case-panel">' +
-            '<div class="case-panel-num">2</div>' +
-            '<div class="case-panel-text">' + c.scene2 + '</div>' +
-          '</div>' +
-          '<div class="case-panel">' +
-            '<div class="case-panel-num">3</div>' +
-            '<div class="case-panel-text">' + c.scene3 + '</div>' +
-          '</div>' +
+        '<div class="case-panel">' +
+          '<div class="case-panel-num">2</div>' +
+          '<div class="case-panel-text">' + c.scene2 + '</div>' +
         '</div>' +
-        '<div class="case-lesson">' + c.lesson + '</div>' +
-        '<div class="case-source">' + c.source + '</div>' +
-      '</div>';
-    });
-    html += '</div>';
+        '<div class="case-panel">' +
+          '<div class="case-panel-num">3</div>' +
+          '<div class="case-panel-text">' + c.scene3 + '</div>' +
+        '</div>' +
+      '</div>' +
+      '<div class="case-lesson">' + c.lesson + '</div>' +
+      '<div class="case-source">' + c.source + '</div>' +
+    '</div>';
   });
+  html += '</div>';
   document.getElementById('caseContainer').innerHTML = html;
 }
 
