@@ -1273,6 +1273,22 @@ button { font-family: inherit; cursor: pointer; border: none; outline: none; }
 }
 
 /* ===== 案例条漫 ===== */
+.case-group {
+  margin-bottom: 30px;
+}
+.case-group:last-child {
+  margin-bottom: 0;
+}
+.case-group-title {
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--primary, #1a73e8);
+  text-align: center;
+  padding: 10px 0;
+  margin-bottom: 16px;
+  border-bottom: 2px solid var(--primary, #1a73e8);
+  letter-spacing: 1px;
+}
 .case-card {
   background: var(--card-bg);
   border-radius: var(--radius);
