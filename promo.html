@@ -195,21 +195,39 @@
       opacity: 0.7;
     }
 
-    /* ===== 搜索引导 ===== */
-    .search-hint {
+    /* ===== 铁路知识宣讲 ===== */
+    .promo-knowledge {
       max-width: 480px;
       width: 100%;
-      margin-top: 16px;
-      padding: 14px 16px;
-      background: rgba(255,255,255,0.7);
-      border-radius: 12px;
+      margin-top: 20px;
+    }
+    .knowledge-title {
+      font-size: 18px;
+      font-weight: 800;
+      color: #1A5F9E;
+      margin-bottom: 12px;
       text-align: center;
+    }
+    .knowledge-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+    .knowledge-card {
+      background: #fff;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 4px 16px rgba(26, 95, 158, 0.1);
+    }
+    .knowledge-card img {
+      width: 100%;
+      display: block;
+    }
+    .knowledge-card-text {
+      padding: 10px 14px;
       font-size: 13px;
       color: #5A6C7D;
-      line-height: 1.6;
-    }
-    .search-hint b {
-      color: #1A5F9E;
+      line-height: 1.5;
     }
 
     /* ===== 快速入口按钮 ===== */
@@ -302,10 +320,23 @@
     </a>
   </div>
 
-  <!-- ===== 搜索引导提示 ===== -->
-  <div class="search-hint">
-    搜索关键词：<b>铁路安全答题</b> · <b>铁道小卫士</b> · <b>铁路沿线安全</b> · <b>中小学生安全教育</b><br/>
-    本页面已适配搜索引擎收录，可通过百度、Google等搜索"铁道小卫士"找到本页面
+  <!-- ===== 铁路知识宣讲 ===== -->
+  <div class="promo-knowledge">
+    <h2 class="knowledge-title">铁路安全知识宣讲</h2>
+    <div class="knowledge-grid">
+      <div class="knowledge-card">
+        <img src="https://cdn.jsdelivr.net/gh/wanderwrs/railway-safety-images@main/images/promo_quiz_v2_small.jpg" alt="铁路安全答题" onerror="this.onerror=null;this.src='images/promo_quiz_v2_small.jpg'" />
+        <div class="knowledge-card-text">穿越铁路应走专用人行通道，切勿翻越护栏抄近路</div>
+      </div>
+      <div class="knowledge-card">
+        <img src="https://cdn.jsdelivr.net/gh/wanderwrs/railway-safety-images@main/images/promo_kite_small.jpg" alt="禁止在铁路旁放风筝" onerror="this.onerror=null;this.src='images/promo_kite_small.jpg'" />
+        <div class="knowledge-card-text">铁路旁严禁放风筝，风筝线可能缠绕接触网造成事故</div>
+      </div>
+      <div class="knowledge-card">
+        <img src="https://cdn.jsdelivr.net/gh/wanderwrs/railway-safety-images@main/images/promo_stone_v2_small.jpg" alt="禁止向火车抛石块" onerror="this.onerror=null;this.src='images/promo_stone_v2_small.jpg'" />
+        <div class="knowledge-card-text">向列车抛掷石块危险且违法，可能造成严重伤亡和法律责任</div>
+      </div>
+    </div>
   </div>
 
   <p class="footer-tip">点击图片或按钮均可开始游戏 · V1.2.1</p>
