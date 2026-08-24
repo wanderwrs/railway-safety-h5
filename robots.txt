@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow:
+
+Sitemap: https://wanderwrs.github.io/railway-safety-h5/sitemap.xml
